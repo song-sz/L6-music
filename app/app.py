@@ -9,14 +9,14 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     request_type_str = request.method
-    model = load('music -recommender.joblib')
+    model = load('music-recommender.joblib')
     if request_type_str == 'GET':
         return render_template('index.html', href2='')
     else:
         myage = request.form['age']
         mygender = request.form['gender']
         mydegree = request.form['degree']
-        np_arr = np.array([myage, mygender,mydegree])
+        np_arr = np.array([myage,mygender,mydegree])
         predictions = model.predict([np_arr])  
         predictions_to_str = str(predictions)
         #return predictions_to_str
